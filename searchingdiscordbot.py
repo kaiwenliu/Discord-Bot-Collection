@@ -14,7 +14,8 @@ async def on_ready():
     print("Username: " + client.user.name)
     print("User ID: " + client.user.id)
     print("=====================")
-    await client.change_presence(game=discord.Game(name="BKA CLAN ROCKS!!!"))
+    #the discord bot's status
+    await client.change_presence(game=discord.Game(name="Status"))
 
 @client.event
 async def on_message(message):
@@ -40,7 +41,7 @@ async def on_message(message):
             #print all the urls searched
             for url in search(searchterms, num=resultamount, stop=1, pause=2):
                 await client.send_message(message.channel, url)
-        except ValueError:
+        except (ValueError, IndexError):
             await client.send_message(message.channel, "you need to type **?google [amount of results] [search terms]**")
 
 
